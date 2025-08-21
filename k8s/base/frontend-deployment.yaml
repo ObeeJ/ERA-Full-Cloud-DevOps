@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raally-frontend
+  namespace: raally
+  labels:
+    app: raally-frontend
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: raally-frontend
+  template:
+    metadata:
+      labels:
+        app: raally-frontend
+        tier: frontend
+    spec:
+      containers:
+      - name: raally-frontend
+        image: raally/frontend:latest
+        ports:
+        - containerPort: 80
+          name: http
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: raally-frontend-service
+  namespace: raally
+  labels:
+    app: raally-frontend
+spec:
+  selector:
+    app: raally-frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    name: http
+  type: ClusterIP

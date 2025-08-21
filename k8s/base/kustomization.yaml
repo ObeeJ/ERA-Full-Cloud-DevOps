@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: raally
+
+resources:
+- namespace.yaml
+- configmap.yaml
+- persistent-volumes.yaml
+- redis-deployment.yaml
+- kafka-deployment.yaml
+- backend-deployment.yaml
+- frontend-deployment.yaml
+- ingress.yaml
+- hpa.yaml
+
+commonLabels:
+  app.kubernetes.io/name: raally
+  app.kubernetes.io/version: "1.0.0"
+  app.kubernetes.io/component: web-app
+  app.kubernetes.io/part-of: raally-platform
+
+images:
+- name: raally/backend
+  newTag: latest
+- name: raally/frontend
+  newTag: latest

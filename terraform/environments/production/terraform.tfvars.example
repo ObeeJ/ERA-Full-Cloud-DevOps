@@ -1,0 +1,60 @@
+# AWS Configuration
+aws_region = "us-west-2"
+environment = "production"
+project_name = "raally"
+
+# VPC Configuration
+vpc_cidr = "10.0.0.0/16"
+availability_zones = ["us-west-2a", "us-west-2b", "us-west-2c"]
+
+# EKS Configuration
+eks_cluster_version = "1.27"
+eks_node_groups = {
+  general = {
+    instance_types = ["t3.medium"]
+    min_size      = 2
+    max_size      = 10
+    desired_size  = 3
+    capacity_type = "ON_DEMAND"
+    disk_size     = 20
+  }
+  spot = {
+    instance_types = ["t3.medium", "t3.large"]
+    min_size      = 0
+    max_size      = 5
+    desired_size  = 2
+    capacity_type = "SPOT"
+    disk_size     = 20
+  }
+}
+
+# RDS Configuration
+db_instance_class = "db.t3.micro"
+db_allocated_storage = 20
+db_max_allocated_storage = 100
+db_username = "raally_admin"
+# db_password should be set via environment variable or AWS Secrets Manager
+
+# ElastiCache Configuration
+redis_node_type = "cache.t3.micro"
+redis_num_cache_nodes = 1
+redis_port = 6379
+
+# MSK Configuration
+kafka_version = "3.4.0"
+kafka_broker_nodes = 3
+kafka_instance_type = "kafka.t3.small"
+kafka_volume_size = 10
+
+# Monitoring Configuration
+enable_cloudwatch_monitoring = true
+log_retention_days = 7
+
+# Security Configuration
+allowed_cidr_blocks = ["0.0.0.0/0"]  # Restrict this in production
+ssl_certificate_arn = ""  # Provide your ACM certificate ARN
+
+# Backup Configuration
+backup_retention_period = 7
+backup_window = "03:00-04:00"
+maintenance_window = "sun:04:00-sun:05:00"

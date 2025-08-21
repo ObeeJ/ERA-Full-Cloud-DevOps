@@ -57,6 +57,9 @@ const routes = express.Router();
 // Enable Passport for Social Sign-in
 authSocial(app, routes);
 
+// Health check endpoints (no auth required)
+app.use('/api', require('./health').default);
+
 require('./auditLog').default(routes);
 require('./auth').default(routes);
 require('./plan').default(routes);

@@ -1,0 +1,176 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raally-zookeeper
+  namespace: raally
+  labels:
+    app: raally-zookeeper
+    tier: messaging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: raally-zookeeper
+  template:
+    metadata:
+      labels:
+        app: raally-zookeeper
+        tier: messaging
+    spec:
+      containers:
+      - name: zookeeper
+        image: confluentinc/cp-zookeeper:7.4.0
+        ports:
+        - containerPort: 2181
+          name: client
+        env:
+        - name: ZOOKEEPER_CLIENT_PORT
+          value: "2181"
+        - name: ZOOKEEPER_TICK_TIME
+          value: "2000"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        volumeMounts:
+        - name: zk-data
+          mountPath: /var/lib/zookeeper/data
+        - name: zk-logs
+          mountPath: /var/lib/zookeeper/log
+      volumes:
+      - name: zk-data
+        persistentVolumeClaim:
+          claimName: raally-zookeeper-data-pvc
+      - name: zk-logs
+        persistentVolumeClaim:
+          claimName: raally-zookeeper-logs-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: raally-zookeeper
+  namespace: raally
+  labels:
+    app: raally-zookeeper
+spec:
+  selector:
+    app: raally-zookeeper
+  ports:
+  - protocol: TCP
+    port: 2181
+    targetPort: 2181
+    name: client
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raally-kafka
+  namespace: raally
+  labels:
+    app: raally-kafka
+    tier: messaging
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: raally-kafka
+  template:
+    metadata:
+      labels:
+        app: raally-kafka
+        tier: messaging
+    spec:
+      containers:
+      - name: kafka
+        image: confluentinc/cp-kafka:7.4.0
+        ports:
+        - containerPort: 9092
+          name: kafka
+        - containerPort: 9101
+          name: jmx
+        env:
+        - name: KAFKA_BROKER_ID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: KAFKA_ZOOKEEPER_CONNECT
+          value: "raally-zookeeper:2181"
+        - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
+          value: "PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT"
+        - name: KAFKA_ADVERTISED_LISTENERS
+          value: "PLAINTEXT://$(KAFKA_BROKER_ID).raally-kafka:29092,PLAINTEXT_HOST://localhost:9092"
+        - name: KAFKA_METRIC_REPORTERS
+          value: "io.confluent.metrics.reporter.ConfluentMetricsReporter"
+        - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
+          value: "3"
+        - name: KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS
+          value: "0"
+        - name: KAFKA_CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS
+          value: "$(KAFKA_BROKER_ID).raally-kafka:29092"
+        - name: KAFKA_CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS
+          value: "3"
+        - name: KAFKA_CONFLUENT_METRICS_ENABLE
+          value: "true"
+        - name: KAFKA_CONFLUENT_SUPPORT_CUSTOMER_ID
+          value: "anonymous"
+        - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
+          value: "true"
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - "kafka-broker-api-versions --bootstrap-server localhost:9092"
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - "kafka-broker-api-versions --bootstrap-server localhost:9092"
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
+        volumeMounts:
+        - name: kafka-data
+          mountPath: /var/lib/kafka/data
+      volumes:
+      - name: kafka-data
+        persistentVolumeClaim:
+          claimName: raally-kafka-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: raally-kafka
+  namespace: raally
+  labels:
+    app: raally-kafka
+spec:
+  selector:
+    app: raally-kafka
+  ports:
+  - protocol: TCP
+    port: 9092
+    targetPort: 9092
+    name: kafka
+  - protocol: TCP
+    port: 9101
+    targetPort: 9101
+    name: jmx
+  type: ClusterIP
