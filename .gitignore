@@ -1,2 +1,36 @@
 .scannerwork
 raally-backend-js-node-bug-17
+
+# Environment files with sensitive data
+.env
+raally-backend-js-node/.env
+raally-frontend-js-react/.env
+
+# Database files
+*.db
+raally.db
+
+# Node modules
+node_modules/
+*/node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Development files
+.ai
+nvm/
+
+# Package lock files (optional - remove if you want to include them)
+package-lock.json
+yarn.lock
