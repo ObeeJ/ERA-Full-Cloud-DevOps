@@ -1,14 +1,14 @@
-# 🚀 ERA Full Cloud DevOps: Enterprise Resource Allocation Platform
+# ERA Full Cloud DevOps: Enterprise Resource Allocation Platform
 
 [![DevOps](https://img.shields.io/badge/DevOps-AWS%20%7C%20Docker%20%7C%20Kubernetes-blue?style=for-the-badge)](https://github.com/ObeeJ/ERA-Full-Cloud-DevOps)
 [![Infrastructure](https://img.shields.io/badge/Infrastructure-Terraform%20%7C%20IaC-orange?style=for-the-badge)](https://github.com/ObeeJ/ERA-Full-Cloud-DevOps)
 [![Architecture](https://img.shields.io/badge/Architecture-Microservices%20%7C%20Event--Driven-green?style=for-the-badge)](https://github.com/ObeeJ/ERA-Full-Cloud-DevOps)
 
-## 📋 Project Overview
+## Project Overview
 
 **ERA (Enterprise Resource Allocation)** is a production-ready, cloud-native SaaS platform that demonstrates enterprise-grade DevOps practices and full-stack development expertise. Originally a basic debugging challenge, this project has been transformed into a comprehensive showcase of modern cloud infrastructure, containerization, and DevOps methodologies.
 
-### 🎯 What This Project Demonstrates
+### What This Project Demonstrates
 
 - **Enterprise DevOps Transformation:** From monolithic debugging to cloud-native microservices
 - **Infrastructure as Code:** Complete AWS infrastructure automation with Terraform
@@ -17,9 +17,9 @@
 - **Cloud Security:** Best practices for container security and secrets management
 - **Professional Documentation:** Comprehensive guides and architectural decision records
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
-### **Before: Simple Bug Fixes** ➡️ **After: Enterprise Cloud Platform**
+### **Before: Simple Bug Fixes** **After: Enterprise Cloud Platform**
 
 ```text
 BEFORE (Basic Debugging)               AFTER (Enterprise DevOps)
@@ -55,7 +55,7 @@ BEFORE (Basic Debugging)               AFTER (Enterprise DevOps)
 | **Infrastructure** | Terraform | Infrastructure as Code |
 | **Monitoring** | CloudWatch + Custom Health Checks | Observability and alerting |
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
 ### Option 1: Docker Compose (Recommended for Development)
 
@@ -103,7 +103,7 @@ terraform plan -var-file="terraform.tfvars"
 terraform apply -var-file="terraform.tfvars"
 ```
 
-## 🔧 DevOps Transformation Story
+## DevOps Transformation Story
 
 ### **Problem**: Basic Bug Fixing Challenge
 - Simple React frontend with basic routing issues
@@ -130,7 +130,7 @@ terraform apply -var-file="terraform.tfvars"
 | **Infrastructure** | Manual provisioning | Terraform IaC |
 | **Performance** | Basic database queries | Redis caching + optimization |
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### **Frontend**
 - **React 18** with TypeScript for type safety
@@ -160,26 +160,26 @@ terraform apply -var-file="terraform.tfvars"
 - **Health Monitoring** with custom endpoints
 - **Security Scanning** with updated base images
 
-## 📚 Documentation
+## Documentation
 
 ### **Core Documentation**
-- 📖 [DevOps Architecture Guide](./DEVOPS_README.md) - Comprehensive infrastructure overview
-- 🚀 [Deployment Guide](./DEPLOYMENT_GUIDE.md) - Step-by-step deployment instructions
-- 💼 [Portfolio Documentation](./PORTFOLIO_README.md) - Challenge completion summary
-- 🔧 [DevOps Summary](./DEVOPS_SUMMARY.md) - Complete transformation overview
+- [DevOps Architecture Guide](./DEVOPS_README.md) - Comprehensive infrastructure overview
+- [Deployment Guide](./DEPLOYMENT_GUIDE.md) - Step-by-step deployment instructions
+- [Portfolio Documentation](./PORTFOLIO_README.md) - Challenge completion summary
+- [DevOps Summary](./DEVOPS_SUMMARY.md) - Complete transformation overview
 
 ### **Technical Guides**
-- 🐛 [Bug Fixes Summary](./BUG_FIXES_SUMMARY.md) - Detailed problem resolution
-- 📈 [Technical Highlights](./TECHNICAL_HIGHLIGHTS.md) - Key implementation details
-- 🎓 [Lessons Learned](./LESSONS_LEARNED.md) - Professional insights and growth
-- ⚙️ [Terraform Installation](./TERRAFORM_INSTALLATION_GUIDE.md) - Infrastructure setup
+- [Bug Fixes Summary](./BUG_FIXES_SUMMARY.md) - Detailed problem resolution
+- [Technical Highlights](./TECHNICAL_HIGHLIGHTS.md) - Key implementation details
+- [Lessons Learned](./LESSONS_LEARNED.md) - Professional insights and growth
+- [Terraform Installation](./TERRAFORM_INSTALLATION_GUIDE.md) - Infrastructure setup
 
 ### **DevOps Resources**
-- 🔍 [Issues Resolution](./DEVOPS_ISSUES_RESOLUTION.md) - Problem-solving approach
-- 🔐 [Security Best Practices](./SECURITY.md) - Container and cloud security
-- 📊 [Monitoring Guide](./MONITORING.md) - Observability implementation
+- [Issues Resolution](./DEVOPS_ISSUES_RESOLUTION.md) - Problem-solving approach
+- [Security Best Practices](./SECURITY.md) - Container and cloud security
+- [Monitoring Guide](./MONITORING.md) - Observability implementation
 
-## 🏆 Key Features
+## Key Features
 
 ### **Business Functionality**
 - **Multi-tenant SaaS:** Workspace isolation and management
@@ -196,7 +196,7 @@ terraform apply -var-file="terraform.tfvars"
 - **Security Implementation:** Container hardening and secrets management
 - **Monitoring & Observability:** Health checks, logging, and metrics
 
-## 🔐 Security Features
+## Security Features
 
 - **Container Security:** Non-root users, minimal base images
 - **Secrets Management:** Kubernetes secrets and AWS Parameter Store
@@ -205,7 +205,7 @@ terraform apply -var-file="terraform.tfvars"
 - **RBAC:** Role-based access control for resources
 - **Vulnerability Scanning:** Regular security updates and scans
 
-## 📊 Performance Optimizations
+## Performance Optimizations
 
 - **Redis Caching:** Session management and data caching
 - **CDN Integration:** Static asset optimization
@@ -213,7 +213,7 @@ terraform apply -var-file="terraform.tfvars"
 - **Auto-scaling:** Horizontal pod auto-scaler based on CPU/memory
 - **Load Balancing:** Application Load Balancer with health checks
 
-## 🌐 Live Demo & Contact
+## Live Demo & Contact
 
 ### **Demo Environment**
 - **Frontend:** [https://era-devops.your-domain.com](https://era-devops.your-domain.com) *(when deployed)*
@@ -226,7 +226,7 @@ terraform apply -var-file="terraform.tfvars"
 - **Portfolio:** [Your Portfolio Website]
 - **Email:** your.email@domain.com
 
-## 🚀 Getting Started for Recruiters
+## Getting Started for Recruiters
 
 ### **Quick Evaluation Path**
 1. **Review Architecture:** Check the [DevOps Summary](./DEVOPS_SUMMARY.md) for complete overview
@@ -241,7 +241,7 @@ terraform apply -var-file="terraform.tfvars"
 - **Problem-Solving:** Systematic debugging and enhancement approach
 - **Documentation:** Professional technical writing and communication
 
-## 📈 Project Evolution
+## Project Evolution
 
 This project represents a complete transformation from a basic debugging exercise to an enterprise-grade cloud platform, demonstrating:
 
@@ -252,6 +252,6 @@ This project represents a complete transformation from a basic debugging exercis
 
 ---
 
-**🎯 Ready for Enterprise Development Challenges**
+** Ready for Enterprise Development Challenges**
 
 This project showcases the ability to take legacy applications and transform them into modern, cloud-native platforms using industry best practices and enterprise-grade DevOps methodologies.
