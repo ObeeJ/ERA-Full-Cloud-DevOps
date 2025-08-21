@@ -55,7 +55,7 @@ export default class SequelizeRepository {
     const totalAvailableHours = availability.reduce((partialSum, row) => partialSum + row.workAvailability, 0);
 
     const assignedHours = await options.database.sequelize.query(
-      "SELECT SUM(hoursPerWeek) as assignedHours FROM assignments WHERE (endDate IS NULL OR endDate < '8/31/2022') AND tenantId = '" + tenant.id + "'",
+      "SELECT SUM(hoursPerWeek) as assignedHours FROM assignments WHERE (endDate IS NULL OR endDate > NOW()) AND tenantId = '" + tenant.id + "'",
       {
         raw: true,
         type: QueryTypes.SELECT
@@ -74,7 +74,10 @@ export default class SequelizeRepository {
     );
 
     const people = await options.database.sequelize.query(
-      "SELECT personId, title, MAX(effectiveDate) as date FROM jobTitles WHERE tenantId = '" + tenant.id + "' GROUP BY personId",
+      "SELECT jt1.personId, jt1.title, jt1.effectiveDate FROM jobTitles jt1 " +
+      "INNER JOIN (SELECT personId, MAX(effectiveDate) as maxDate FROM jobTitles WHERE tenantId = '" + tenant.id + "' GROUP BY personId) jt2 " +
+      "ON jt1.personId = jt2.personId AND jt1.effectiveDate = jt2.maxDate " +
+      "WHERE jt1.tenantId = '" + tenant.id + "'",
       {
         raw: true,
         type: QueryTypes.SELECT
@@ -124,8 +127,8 @@ export default class SequelizeRepository {
     const availability = await options.database.sequelize.query(
       "SELECT fullName, availability.workAvailability, assignedHours.assignedHours, jobTitles.title FROM people \
         LEFT JOIN (SELECT personId, MAX(effectiveDate), workAvailability FROM compensations WHERE tenantId = '" + tenant.id + "' GROUP BY personId) as availability ON people.Id = availability.personId \
-        LEFT JOIN (SELECT personId, SUM(hoursPerWeek) as assignedHours FROM assignments WHERE (endDate IS NULL OR endDate < '8/31/2022') AND tenantId = '" + tenant.id + "' GROUP BY personId) AS assignedHours ON people.Id = assignedHours.personId \
-        LEFT JOIN (SELECT personId, title, MAX(effectiveDate) as date FROM jobTitles WHERE tenantId = '" + tenant.id + "' GROUP BY personId) AS jobTitles ON people.Id = jobTitles.personId \
+        LEFT JOIN (SELECT personId, SUM(hoursPerWeek) as assignedHours FROM assignments WHERE (endDate IS NULL OR endDate > NOW()) AND tenantId = '" + tenant.id + "' GROUP BY personId) AS assignedHours ON people.Id = assignedHours.personId \
+        LEFT JOIN (SELECT jt1.personId, jt1.title FROM jobTitles jt1 INNER JOIN (SELECT personId, MAX(effectiveDate) as maxDate FROM jobTitles WHERE tenantId = '" + tenant.id + "' GROUP BY personId) jt2 ON jt1.personId = jt2.personId AND jt1.effectiveDate = jt2.maxDate WHERE jt1.tenantId = '" + tenant.id + "') AS jobTitles ON people.Id = jobTitles.personId \
       WHERE tenantId = '" + tenant.id + "' AND workAvailability > 0",
       {  
         raw: true,
@@ -167,8 +170,8 @@ export default class SequelizeRepository {
     const availability = await options.database.sequelize.query(
       "SELECT fullName, availability.workAvailability, assignedHours.assignedHours, jobTitles.title FROM people \
         LEFT JOIN (SELECT personId, MAX(effectiveDate), workAvailability FROM compensations WHERE tenantId = '" + tenant.id + "' GROUP BY personId) as availability ON people.Id = availability.personId \
-        LEFT JOIN (SELECT personId, SUM(hoursPerWeek) as assignedHours FROM assignments WHERE (endDate IS NULL OR endDate < '8/31/2022') AND tenantId = '" + tenant.id + "' GROUP BY personId) AS assignedHours ON people.Id = assignedHours.personId \
-        LEFT JOIN (SELECT personId, title, MAX(effectiveDate) as date FROM jobTitles WHERE tenantId = '" + tenant.id + "' GROUP BY personId) AS jobTitles ON people.Id = jobTitles.personId \
+        LEFT JOIN (SELECT personId, SUM(hoursPerWeek) as assignedHours FROM assignments WHERE (endDate IS NULL OR endDate > NOW()) AND tenantId = '" + tenant.id + "' GROUP BY personId) AS assignedHours ON people.Id = assignedHours.personId \
+        LEFT JOIN (SELECT jt1.personId, jt1.title FROM jobTitles jt1 INNER JOIN (SELECT personId, MAX(effectiveDate) as maxDate FROM jobTitles WHERE tenantId = '" + tenant.id + "' GROUP BY personId) jt2 ON jt1.personId = jt2.personId AND jt1.effectiveDate = jt2.maxDate WHERE jt1.tenantId = '" + tenant.id + "') AS jobTitles ON people.Id = jobTitles.personId \
       WHERE tenantId = '" + tenant.id + "' AND workAvailability > 0",
       {  
         raw: true,

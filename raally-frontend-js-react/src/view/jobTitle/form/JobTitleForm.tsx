@@ -105,18 +105,6 @@ function JobTitleForm(props) {
               {i18n('common.save')}
             </button>
 
-            {props.onCancel ? (
-              <button
-                className="btn btn-light"
-                type="button"
-                disabled={props.saveLoading}
-                onClick={() => props.onCancel()}
-              >
-                <i className="fas fa-times"></i>{' '}
-                {i18n('common.cancel')}
-              </button>
-            ) : null}
-
             <button
               className="btn btn-light"
               type="button"
@@ -126,6 +114,18 @@ function JobTitleForm(props) {
               <i className="fas fa-undo"></i>{' '}
               {i18n('common.reset')}
             </button>
+
+            {props.onCancel && (
+              <button
+                className="btn btn-light"
+                type="button"
+                disabled={props.saveLoading}
+                onClick={() => props.onCancel()}
+              >
+                <i className="fas fa-times"></i>{' '}
+                {i18n('common.cancel')}
+              </button>
+            )}
           </div>
         </form>
       </FormProvider>

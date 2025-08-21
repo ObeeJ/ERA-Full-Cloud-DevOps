@@ -13,7 +13,7 @@ import AuthService from 'src/modules/auth/authService';
   if (isSocialOnboardRequested) {
     await AuthService.socialOnboard();
   }
-  SettingsService.applyThemeFromTenant();
+  await SettingsService.applyThemeFromTenant();
   await i18nInit();
 
   const App = require('./App').default;

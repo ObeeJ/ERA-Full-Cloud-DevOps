@@ -19,14 +19,13 @@ export default async (req, res, next) => {
       numberOfPeople: {}
     };
 
-    let payloadValues;
-
-    await Promise.all([dashboardService.getUsageByHoursData(),
-                 dashboardService.getNumberOfPeoplePerRole(),
-                 dashboardService.getUsageByPeopleData(),
-                 dashboardService.getIdlenessPerRoleData()]).then((values) => {
-                  payloadValues = values;                  
-                 });
+    // Execute methods sequentially to get accurate cumulative timing
+    const usageByHours = await dashboardService.getUsageByHoursData();
+    const countPerRole = await dashboardService.getNumberOfPeoplePerRole();
+    const usageByPeople = await dashboardService.getUsageByPeopleData();
+    const idlenessPerRole = await dashboardService.getIdlenessPerRoleData();
+    
+    const payloadValues = [usageByHours, countPerRole, usageByPeople, idlenessPerRole];
 
     payload = generatePayload(dashboardService.getGatheringTime(), payloadValues);
 

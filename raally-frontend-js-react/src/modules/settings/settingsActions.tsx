@@ -60,19 +60,13 @@ const settingsActions = {
         payload: settings,
       });
 
-      const secondsForReload = 3;
+      // Apply the new theme immediately
+      if (settings && settings.theme) {
+        SettingsService.applyTheme(settings.theme);
+      }
 
       Message.success(
-        i18n('settings.save.success', secondsForReload),
-      );
-
-      /**
-       * Theme change happens at boot time.
-       * So to take effect the page must be reloaded
-       */
-      setTimeout(
-        () => window.location.reload(),
-        secondsForReload * 1000,
+        i18n('settings.save.success'),
       );
     } catch (error) {
       Errors.handle(error);

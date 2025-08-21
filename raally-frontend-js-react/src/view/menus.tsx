@@ -31,7 +31,7 @@ export default [
     path: '/audit-logs',
     icon: 'fas fa-history',
     label: i18n('auditLog.menu'),
-    permissionRequired: null,
+    permissionRequired: permissions.auditLogRead,
   },
 
   {

@@ -9,16 +9,32 @@ const DEFAULT_ERROR_MESSAGE = i18n(
 
 function selectErrorKeyOrMessage(error) {
   if (error && error.response && error.response.data) {
-    const data = error.response.data;
-
-    if (data.error && data.error.message) {
-      return data.error.message;
+    // Handle structured error responses
+    if (error.response.data.error && error.response.data.error.message) {
+      return error.response.data.error.message;
     }
-
-    return String(data);
+    
+    // Handle direct string responses
+    if (typeof error.response.data === 'string') {
+      return error.response.data;
+    }
+    
+    // Handle any other structured data
+    if (error.response.data.message) {
+      return error.response.data.message;
+    }
+    
+    // If response data exists but no recognizable message structure
+    return JSON.stringify(error.response.data);
   }
 
-  return error.message || DEFAULT_ERROR_MESSAGE;
+  // Handle regular error objects
+  if (error && error.message) {
+    return error.message;
+  }
+
+  // Final fallback
+  return DEFAULT_ERROR_MESSAGE;
 }
 
 function selectErrorMessage(error) {

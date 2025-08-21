@@ -129,7 +129,10 @@ function PasswordChangeFormPage(props) {
             {props.onCancel ? (
               <button
                 disabled={saveLoading}
-                onClick={() => props.onCancel()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  props.onCancel();
+                }}
                 className="btn btn-light"
                 type="button"
               >

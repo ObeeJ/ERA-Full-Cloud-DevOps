@@ -42,4 +42,53 @@ authAxios.interceptors.request.use(
   },
 );
 
+// Add response interceptor to handle errors consistently
+authAxios.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    // Ensure error has a consistent structure
+    if (!error.response) {
+      // Network error or request timeout
+      error.response = {
+        status: 0,
+        data: {
+          error: {
+            message: 'Network error. Please check your connection.',
+            code: 0
+          }
+        }
+      };
+    } else if (!error.response.data) {
+      // Response without data
+      error.response.data = {
+        error: {
+          message: `Server error (${error.response.status})`,
+          code: error.response.status
+        }
+      };
+    } else if (typeof error.response.data === 'string') {
+      // String response - wrap in proper structure
+      const message = error.response.data;
+      error.response.data = {
+        error: {
+          message: message,
+          code: error.response.status
+        }
+      };
+    } else if (!error.response.data.error) {
+      // Data exists but no error structure
+      error.response.data = {
+        error: {
+          message: error.response.data.message || 'An error occurred',
+          code: error.response.status
+        }
+      };
+    }
+    
+    return Promise.reject(error);
+  }
+);
+
 export default authAxios;

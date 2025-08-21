@@ -360,7 +360,7 @@ const authActions = {
 
     AuthCurrentTenant.set(tenant);
     await dispatch(authActions.doRefreshCurrentUser());
-    SettingsService.applyThemeFromTenant();
+    await SettingsService.applyThemeFromTenant();
     getHistory().push('/');
   },
 };

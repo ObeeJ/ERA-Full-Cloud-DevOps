@@ -13,8 +13,8 @@ export default async (req, res, next) => {
       req.params.id,
       req.body.data,
     );
-    
-    await res.status(206).send(payload);
+
+    await ApiResponseHandler.success(req, res, payload);
   } catch (error) {
     await ApiResponseHandler.error(req, res, error);
   }

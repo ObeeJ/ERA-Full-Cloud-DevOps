@@ -270,7 +270,7 @@ const en = {
         hints: {
           'projectId': 'The internal company-wide ID of the project.',
           'name': 'The name of the project.',
-          'type': 'The type of the poject.',
+          'type': 'The type of the project.',
         },
         new: {
           title: 'New Project',
@@ -367,6 +367,7 @@ const en = {
   },
 
   auth: {
+    wrongPassword: "Sorry, we don't recognize your credentials",
     tenants: 'Workspaces',
     profile: {
       title: 'Profile',
@@ -603,10 +604,12 @@ const en = {
     menu: 'Settings',
     save: {
       success:
-        'Settings successfully saved. The page will reload in {0} seconds for changes to take effect.',
+        'Settings successfully saved. Changes take effect immediately.',
     },
     fields: {
-      theme: 'Theme'
+      theme: 'Theme',
+      logos: 'Logo',
+      backgroundImages: 'Background Image',
     },
     colors: {
       default: 'Dark',

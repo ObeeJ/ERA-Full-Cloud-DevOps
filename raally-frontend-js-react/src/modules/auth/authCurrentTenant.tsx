@@ -1,5 +1,4 @@
 import { tenantSubdomain } from '../tenant/tenantSubdomain';
-import Roles from '../../security/roles';
 
 export default class AuthCurrentTenant {
   static selectAndSaveOnStorageFor(currentUser) {
@@ -12,7 +11,7 @@ export default class AuthCurrentTenant {
     }
 
     const activeTenants = currentUser.tenants.filter(
-      (tenantUser) => tenantUser.status === 'active' && tenantUser.roles.includes(Roles.values.admin),
+      (tenantUser) => tenantUser.status === 'active' && tenantUser.roles && tenantUser.roles.length > 0,
     );
 
     if (!activeTenants || !activeTenants.length) {

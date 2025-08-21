@@ -2,8 +2,16 @@ import authAxios from 'src/modules/shared/axios/authAxios';
 import AuthCurrentTenant from 'src/modules/auth/authCurrentTenant';
 
 export default class SettingsService {
-  static applyThemeFromTenant() {
-    this.applyTheme('default');
+  static async applyThemeFromTenant() {
+    try {
+      const settings = await this.find();
+      const theme = (settings && settings.theme) || 'default';
+      this.applyTheme(theme);
+    } catch (error) {
+      // If we can't fetch settings, fallback to default theme
+      console.warn('Could not load theme from tenant settings, using default theme:', error);
+      this.applyTheme('default');
+    }
   }
 
   static async find() {
@@ -35,7 +43,7 @@ export default class SettingsService {
     if (oldLink) {
       oldLink.setAttribute(
         'href',
-        `${process.env.PUBLIC_URL}/theme/dist/${color}.css`,
+        `${process.env.PUBLIC_URL || ''}/theme/dist/${color}.css`,
       );
       return;
     }
@@ -46,8 +54,16 @@ export default class SettingsService {
     link.setAttribute('type', 'text/css');
     link.setAttribute(
       'href',
-      `${process.env.PUBLIC_URL}/theme/dist/${color}.css`,
+      `${process.env.PUBLIC_URL || ''}/theme/dist/${color}.css`,
     );
+
+    // Add error handling for theme loading
+    link.onerror = () => {
+      console.warn(`Failed to load theme: ${color}. Falling back to default theme.`);
+      if (color !== 'default') {
+        this.applyTheme('default');
+      }
+    };
 
     const head = document
       .getElementsByTagName('head')

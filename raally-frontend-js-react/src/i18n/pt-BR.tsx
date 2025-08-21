@@ -271,7 +271,7 @@ const ptBR = {
         hints: {
           'projectId': 'Id interno do projeto.',
           'name': 'O Nome do Projeto.',
-          'type': 'O Tipo do pojeto.',
+          'type': 'O Tipo do projeto.',
         },
         new: {
           title: 'Novo Projeto',
@@ -368,6 +368,7 @@ const ptBR = {
   },
     
   auth: {
+    wrongPassword: 'Desculpe, não reconhecemos suas credenciais',
     tenants: 'Áreas de Trabalho',
     profile: {
       title: 'Perfil',
@@ -605,10 +606,12 @@ const ptBR = {
     menu: 'Configurações',
     save: {
       success:
-        'Configurações salvas com sucesso. A página irá recarregar em {0} para que as alterações tenham efeito.',
+        'Configurações salvas com sucesso. As alterações têm efeito imediatamente.',
     },
     fields: {
       theme: 'Tema',
+      logos: 'Logo',
+      backgroundImages: 'Imagem de Fundo',
     },
     colors: {
       default: 'Escuro',

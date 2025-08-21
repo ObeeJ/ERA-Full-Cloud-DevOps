@@ -25,12 +25,35 @@ export default (state = initialData, { type, payload }) => {
   }
 
   if (type === actions.CURRENT_USER_REFRESH_SUCCESS) {
+    // Check if we have a manually set tenant in localStorage
+    const manuallySelectedTenantId = AuthCurrentTenant.get();
+    const newCurrentUser = payload.currentUser;
+    
+    let selectedTenant = null;
+    
+    if (manuallySelectedTenantId && newCurrentUser && newCurrentUser.tenants) {
+      // Find the manually selected tenant in the user's tenants
+      const tenantUser = newCurrentUser.tenants.find(
+        (tu) => tu.tenant.id === manuallySelectedTenantId && 
+               tu.status === 'active' && 
+               tu.roles && 
+               tu.roles.length > 0
+      );
+      
+      if (tenantUser) {
+        selectedTenant = tenantUser.tenant;
+      }
+    }
+    
+    // If no manually selected tenant found, use the normal selection logic
+    if (!selectedTenant) {
+      selectedTenant = AuthCurrentTenant.selectAndSaveOnStorageFor(newCurrentUser);
+    }
+    
     return {
       ...state,
-      currentUser: payload.currentUser || null,
-      currentTenant: AuthCurrentTenant.selectAndSaveOnStorageFor(
-        payload.currentUser,
-      ),
+      currentUser: newCurrentUser || null,
+      currentTenant: selectedTenant,
     };
   }
 

@@ -211,10 +211,15 @@ export default class TenantService {
 
       // [Dev]: Setting limit of number of workspace per users.
       // This is done for performance debugging purposes.
+      // Increased limit to 100 for production use.
 
-      if (tenantUsers.count > 3) {
+      if (tenantUsers.count > 100) {
         await SequelizeRepository.rollbackTransaction(
           transaction,
+        );
+        throw new Error400(
+          this.options.language,
+          'tenant.workspace.limit.exceeded',
         );
       } else {
         await SequelizeRepository.commitTransaction(

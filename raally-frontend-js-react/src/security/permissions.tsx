@@ -101,7 +101,7 @@ class Permissions {
       },
       auditLogRead: {
         id: 'auditLogRead',
-        allowedRoles: [roles.admin],
+        allowedRoles: [roles.admin, roles.custom],
          allowedPlans: [
           plans.free,
           plans.growth,
@@ -128,7 +128,7 @@ class Permissions {
       },
       compensationCreate: {
         id: 'compensationCreate',
-        allowedRoles: [],
+        allowedRoles: [roles.admin, roles.custom],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 

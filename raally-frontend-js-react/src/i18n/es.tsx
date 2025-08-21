@@ -269,7 +269,7 @@ const es = {
         hints: {
           'projectId': 'El ID interno de la empresa del proyecto.',
           'name': 'El nombre del proyecto.',
-          'type': 'El tipo de poyecto.',
+          'type': 'El tipo de proyecto.',
         },
         new: {
           title: 'Nuevo Proyecto',
@@ -365,6 +365,7 @@ const es = {
       },
   },
   auth: {
+    wrongPassword: 'Lo sentimos, no reconocemos tus credenciales',
     tenants: 'Espacios de trabajo',
     profile: {
       title: 'Perfil',
@@ -619,10 +620,12 @@ const es = {
     menu: 'Configuraciones',
     save: {
       success:
-        'Configuración guardada con éxito. La página se volverá a cargar en {0} segundos para que los cambios surtan efecto.',
+        'Configuración guardada con éxito. Los cambios surten efecto inmediatamente.',
     },
     fields: {
       theme: 'Tema',
+      logos: 'Logo',
+      backgroundImages: 'Imagen de Fondo',
     },
     colors: {
       default: 'Dark',

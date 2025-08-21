@@ -54,6 +54,11 @@ const es = {
     planActive:
       'Hay un plan activo para este espacio de trabajo. Por favor, cancele el plan primero.',
     stripeNotConfigured: 'Stripe no está configurado.',
+    workspace: {
+      limit: {
+        exceeded: 'Has alcanzado el límite máximo de 3 espacios de trabajo por usuario.',
+      },
+    },
   },
   importer: {
     errors: {

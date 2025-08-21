@@ -1,0 +1,49 @@
+      PID    PPID    PGID     WINPID   TTY         UID    STIME COMMAND
+     6688    6369    6688       9084  cons30    197609 08:59:05 /c/Windows/system32/cmd
+     6265       1    6265      12188  cons28    197609 08:11:08 /usr/bin/bash
+     3913    3857    3913       6240  cons10    197609   Aug 19 /usr/bin/bash
+     2350       1    2350      16756  cons6     197609   Aug 18 /usr/bin/bash
+     5425    5369    5425      23232  cons17    197609 10:18:01 /usr/bin/bash
+     6317       1    6317      21672  cons29    197609 08:12:30 /usr/bin/bash
+     5503       1    5503       8540  cons19    197609 10:19:47 /usr/bin/bash
+     2269    2189    2269      13600  cons4     197609   Aug 18 /c/Users/OBANIJESU/Documents/GoProjects/opstool/bin/opstool-server
+     4569       1    4569      21928  cons12    197609 09:41:35 /usr/bin/bash
+     1630       1    1630      15204  cons1     197609   Aug 18 /usr/bin/bash
+     5368    5360    5360      23480  cons16    197609 10:17:28 /c/Program Files/nodejs/node
+     6253    6197    6253      13476  cons27    197609 08:09:15 /usr/bin/bash
+     2431       1    2431      14052  cons7     197609   Aug 18 /usr/bin/bash
+     5170    5162    5162      23356  cons14    197609 10:10:15 /c/Program Files/nodejs/node
+     4633       1    4633      22140  cons13    197609 09:42:38 /usr/bin/bash
+     1473       1    1473       5336  cons0     197609   Aug 18 /usr/bin/bash
+     4433       1    4433       9492  cons11    197609 09:37:09 /usr/bin/bash
+     5369       1    5369       6712  cons17    197609 10:17:44 /usr/bin/bash
+     5744       1    5744      14320  cons22    197609 07:20:00 /usr/bin/bash
+     5106       1    5106      13132  cons14    197609 10:10:08 /usr/bin/bash
+     6179    6123    6179      16748  cons26    197609 07:57:39 /usr/bin/bash
+     6051       1    6051      23624  cons25    197609 07:26:30 /usr/bin/bash
+     3921    3913    3913       7636  cons10    197609   Aug 19 /c/Program Files/nodejs/node
+     2649       1    2649       5892  cons8     197609   Aug 18 /usr/bin/bash
+     3016       1    3016      21052  cons9     197609   Aug 19 /usr/bin/bash
+     2189       1    2189      17740  cons4     197609   Aug 18 /usr/bin/bash
+     5433    5425    5425       8708  cons17    197609 10:18:10 /c/Program Files/nodejs/node
+     5304       1    5304      14828  cons16    197609 10:17:18 /usr/bin/bash
+     2274       1    2274       3984  cons5     197609   Aug 18 /usr/bin/bash
+     5852       1    5852      19552  cons23    197609 07:20:59 /usr/bin/bash
+     5162    5106    5162        308  cons14    197609 10:10:13 /usr/bin/bash
+     1724       1    1724      11044  cons2     197609   Aug 18 /usr/bin/bash
+     5908       1    5908       5204  cons24    197609 07:22:39 /usr/bin/bash
+     5561       1    5561      15024  cons20    197609 10:20:47 /usr/bin/bash
+     5360    5304    5360      19384  cons16    197609 10:17:25 /usr/bin/bash
+     2081       1    2081       8888  cons3     197609   Aug 18 /usr/bin/bash
+     6197       1    6197       2172  cons27    197609 08:09:08 /usr/bin/bash
+     5821    5808    5808      24136  cons22    197609 07:20:30 /c/Program Files/nodejs/node
+     6894    4433    6894      23976  cons11    197609 09:07:08 /usr/bin/PS
+     5808    5744    5808       8368  cons22    197609 07:20:23 /usr/bin/bash
+     3857       1    3857      15908  cons10    197609   Aug 19 /usr/bin/bash
+     6187    6179    6179       7152  cons26    197609 07:57:41 /c/Program Files/nodejs/node
+     6123       1    6123      23572  cons26    197609 07:57:32 /usr/bin/bash
+     6369       1    6369       8820  cons30    197609 08:13:03 /usr/bin/bash
+     6261    6253    6253      23616  cons27    197609 08:09:17 /c/Program Files/nodejs/node
+     5684       1    5684      18088  cons21    197609 07:19:44 /usr/bin/bash
+     5436       1    5436      21028  cons18    197609 10:18:51 /usr/bin/bash
+     5182       1    5182      19908  cons15    197609 10:12:07 /usr/bin/bash

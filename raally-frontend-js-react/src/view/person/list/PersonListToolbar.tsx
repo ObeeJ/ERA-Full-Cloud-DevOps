@@ -77,7 +77,7 @@ function PersonToolbar(props) {
           loading={exportLoading}
           iconClass="far fa-file-excel"
         />{' '}
-        Export
+        {i18n('common.export')}
       </button>
     );
 

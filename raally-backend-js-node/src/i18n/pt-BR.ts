@@ -49,6 +49,11 @@ const ptBR = {
       notSameEmail: `Este convite foi enviado para {0} mas você está acessando como {1}.`,
     },
     planActive: `Existe um plano ativo para esta área de trabalho. Por favor primeiro cancele o plano.`,
+    workspace: {
+      limit: {
+        exceeded: 'Você atingiu o limite máximo de 3 áreas de trabalho por usuário.',
+      },
+    },
   },
 
   importer: {

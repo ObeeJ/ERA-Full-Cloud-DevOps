@@ -51,6 +51,11 @@ const en = {
     },
     planActive: `There is a plan active for this workspace. Please cancel the plan first.`,
     stripeNotConfigured: 'Stripe is not configured.',
+    workspace: {
+      limit: {
+        exceeded: 'You have reached the maximum limit of 3 workspaces per user.',
+      },
+    },
   },
 
   importer: {

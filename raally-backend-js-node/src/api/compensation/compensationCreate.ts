@@ -5,7 +5,7 @@ import CompensationService from '../../services/compensationService';
 
 export default async (req, res, next) => {
   try {
-    new PermissionChecker(req).validateDoesNotHave(
+    new PermissionChecker(req).validateHas(
       Permissions.values.compensationCreate,
     );
 

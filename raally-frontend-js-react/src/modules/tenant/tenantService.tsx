@@ -46,7 +46,7 @@ export default class TenantService {
       }
     }
 
-    SettingsService.applyThemeFromTenant();
+    await SettingsService.applyThemeFromTenant();
   }
 
   static async update(id, data) {
